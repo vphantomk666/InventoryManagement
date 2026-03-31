@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from pathlib import Path
 import jinja2
+import os
 
 from app.DB.database import SessionLocal, engine, Base
 from app.DB.models import ProductDB as Product
@@ -24,11 +25,14 @@ app.add_middleware(
 BASE_DIR = Path(__file__).resolve().parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
 
+STATIC_DIR = FRONTEND_DIR / "static"
+TEMPLATES_DIR = FRONTEND_DIR / "templates"
+
 jinja_env = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(str(FRONTEND_DIR / "templates")),
-    auto_reload=True
+    loader=jinja2.FileSystemLoader(str(TEMPLATES_DIR)),
+    auto_reload=False
 )
-app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR / "static")), name="static")
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 def get_db():
     db = SessionLocal()
