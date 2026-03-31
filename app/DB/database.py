@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.pool import StaticPool
 import os
 from dotenv import load_dotenv
 
@@ -7,11 +8,17 @@ load_dotenv()
 
 DATABASE_URL = os.environ.get("DATABASE_URL") or "sqlite:///./inventory.db"
 
-
-engine = create_engine(
-    DATABASE_URL,
-    pool_pre_ping=True
-)
+if DATABASE_URL.startswith("sqlite"):
+    engine = create_engine(
+        DATABASE_URL,
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool
+    )
+else:
+    engine = create_engine(
+        DATABASE_URL,
+        pool_pre_ping=True
+    )
 
 SessionLocal = sessionmaker(
     autocommit=False,
