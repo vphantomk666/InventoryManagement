@@ -1003,20 +1003,9 @@
                 products = await response.json();
                 renderProducts(products);
             } catch (error) {
-                console.error('API Error:', error);
-                const grid = document.getElementById('productsGrid');
-                grid.innerHTML = `
-                    <div class="empty-state">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                        </svg>
-                        <h3>Unable to connect to server</h3>
-                        <p>Please check your connection or try again later</p>
-                        <button class="btn btn-primary" onclick="loadProducts()" style="margin-top: 1rem;">Retry</button>
-                    </div>
-                `;
+                console.log('API not available, using sample data');
+                products = sampleProducts;
+                renderProducts(products);
             }
         }
 
