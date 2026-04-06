@@ -832,18 +832,7 @@
     </div>
 
     <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <div class="footer-links">
-          <a href="#" onclick="showAboutUs(); return false;">About Us</a>
-          <a href="#" onclick="showTerms(); return false;">Terms of Service</a>
-          <a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a>
-        </div>
-        <p class="footer-copyright">
-          &copy; 2026 Product Manager. All rights reserved.
-        </p>
-      </div>
-    </footer>
+    {% include 'footer.html' %}
 
     <!-- About Us Modal -->
     <div class="modal" id="aboutModal">
@@ -1361,43 +1350,7 @@
           }
         });
 
-      // Footer modal functions
-      function showAboutUs() {
-        document.getElementById("aboutModal").classList.add("active");
-      }
-
-      function closeAboutUs() {
-        document.getElementById("aboutModal").classList.remove("active");
-      }
-
-      function showTerms() {
-        document.getElementById("termsModal").classList.add("active");
-      }
-
-      function closeTerms() {
-        document.getElementById("termsModal").classList.remove("active");
-      }
-
-      function showPrivacy() {
-        document.getElementById("privacyModal").classList.add("active");
-      }
-
-      function closePrivacy() {
-        document.getElementById("privacyModal").classList.remove("active");
-      }
-
-      // Close modals when clicking outside
-      document.getElementById("aboutModal").addEventListener("click", (e) => {
-        if (e.target.id === "aboutModal") closeAboutUs();
-      });
-
-      document.getElementById("termsModal").addEventListener("click", (e) => {
-        if (e.target.id === "termsModal") closeTerms();
-      });
-
-      document.getElementById("privacyModal").addEventListener("click", (e) => {
-        if (e.target.id === "privacyModal") closePrivacy();
-      });
     </script>
+    <script src="/static/js/footer.js"></script>
   </body>
 </html>
