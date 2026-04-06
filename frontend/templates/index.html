@@ -1301,13 +1301,14 @@
       });
 
       // Close confirm dialog when clicking outside
-      document
-        .getElementById("confirmDialog")
-        .addEventListener("click", (e) => {
+      const confirmDialog = document.getElementById("confirmDialog");
+      if (confirmDialog) {
+        confirmDialog.addEventListener("click", (e) => {
           if (e.target.id === "confirmDialog") {
             closeConfirm();
           }
         });
+      }
 
     </script>
   </body>
