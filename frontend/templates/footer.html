@@ -9,15 +9,21 @@
     </div>
 </footer>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
+    const about = document.getElementById("aboutModal");
+    if (about) about.addEventListener("click", function(e) { if (e.target.id === "aboutModal") closeAboutUs(); });
+
+    const terms = document.getElementById("termsModal");
+    if (terms) terms.addEventListener("click", function(e) { if (e.target.id === "termsModal") closeTerms(); });
+
+    const privacy = document.getElementById("privacyModal");
+    if (privacy) privacy.addEventListener("click", function(e) { if (e.target.id === "privacyModal") closePrivacy(); });
+});
+
 function showAboutUs() { document.getElementById("aboutModal").classList.add("active"); }
 function closeAboutUs() { document.getElementById("aboutModal").classList.remove("active"); }
 function showTerms() { document.getElementById("termsModal").classList.add("active"); }
 function closeTerms() { document.getElementById("termsModal").classList.remove("active"); }
 function showPrivacy() { document.getElementById("privacyModal").classList.add("active"); }
 function closePrivacy() { document.getElementById("privacyModal").classList.remove("active"); }
-document.getElementById("aboutModal").addEventListener("click", function(e) { if (e.target.id === "aboutModal") closeAboutUs(); });
-document.getElementById("termsModal").addEventListener("click", function(e) { if (e.target.id === "termsModal") closeTerms(); });
-document.getElementById("privacyModal").addEventListener("click", function(e) { if (e.target.id === "privacyModal") closePrivacy(); });
-});
 </script>
