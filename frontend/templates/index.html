@@ -958,38 +958,9 @@
         let products = [];
         let isEditMode = false;
 
-        // Sample products with icons
-        const sampleProducts = [
-            { id: 1, name: "Book", icon: "📚", description: "Educational reading material", price: 29.99, quantity: 50 },
-            { id: 2, name: "Mouse", icon: "🖱️", description: "Wireless optical mouse", price: 24.99, quantity: 100 },
-            { id: 3, name: "Keyboard", icon: "⌨️", description: "Mechanical gaming keyboard", price: 79.99, quantity: 45 },
-            { id: 4, name: "Headphones", icon: "🎧", description: "Noise-canceling headphones", price: 149.99, quantity: 30 },
-            { id: 5, name: "USB Drive", icon: "💾", description: "64GB USB 3.0 flash drive", price: 15.99, quantity: 200 },
-            { id: 6, name: "Monitor", icon: "🖥️", description: "27-inch 4K display", price: 399.99, quantity: 25 },
-            { id: 7, name: "Printer", icon: "🖨️", description: "All-in-one inkjet printer", price: 199.99, quantity: 15 },
-            { id: 8, name: "Webcam", icon: "📹", description: "1080p HD webcam", price: 59.99, quantity: 40 },
-            { id: 9, name: "Speakers", icon: "🔊", description: "Bluetooth stereo speakers", price: 89.99, quantity: 35 },
-            { id: 10, name: "External HDD", icon: "💿", description: "2TB external hard drive", price: 79.99, quantity: 60 },
-            { id: 11, name: "Power Bank", icon: "🔋", description: "20000mAh portable charger", price: 34.99, quantity: 80 },
-            { id: 12, name: "Router", icon: "📡", description: "Dual-band WiFi router", price: 69.99, quantity: 50 },
-            { id: 13, name: "Smartwatch", icon: "⌚", description: "Fitness tracking smartwatch", price: 249.99, quantity: 40 },
-            { id: 14, name: "Tablet", icon: "📱", description: "10-inch Android tablet", price: 299.99, quantity: 35 },
-            { id: 15, name: "Mobile Phone", icon: "📲", description: "Latest smartphone model", price: 799.99, quantity: 20 },
-            { id: 16, name: "Charger", icon: "🔌", description: "Fast charging USB-C adapter", price: 19.99, quantity: 150 },
-            { id: 17, name: "Earbuds", icon: "🎵", description: "True wireless earbuds", price: 89.99, quantity: 75 },
-            { id: 18, name: "SSD", icon: "💽", description: "1TB NVMe SSD", price: 129.99, quantity: 55 },
-            { id: 19, name: "Graphics Card", icon: "🎮", description: "High-performance GPU", price: 599.99, quantity: 10 },
-            { id: 20, name: "UPS", icon: "⚡", description: "Uninterruptible power supply", price: 149.99, quantity: 25 },
-            { id: 21, name: "Laptop", icon: "💻", description: "15-inch business laptop", price: 899.99, quantity: 18 }
-        ];
-
         // Load products on page load
         document.addEventListener('DOMContentLoaded', () => {
-            // Try to load from API first, if fails use sample data
-            loadProducts().catch(() => {
-                products = sampleProducts;
-                renderProducts(products);
-            });
+            loadProducts();
             setupSearch();
         });
 
@@ -1003,9 +974,8 @@
                 products = await response.json();
                 renderProducts(products);
             } catch (error) {
-                console.log('API not available, using sample data');
-                products = sampleProducts;
-                renderProducts(products);
+                console.error('API Error:', error);
+                renderProducts([]);
             }
         }
 
