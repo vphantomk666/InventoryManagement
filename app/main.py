@@ -13,62 +13,6 @@ from app.schemas.schemas import ProductCreate, ProductResponse
 
 Base.metadata.create_all(bind=engine)
 
-# Seed initial data
-def seed_initial_data():
-    db = SessionLocal()
-    try:
-        existing_products = db.query(Product).count()
-        if existing_products == 0:
-            from decimal import Decimal
-            products = [
-                Product(
-                    name="Laptop",
-                    description="High-performance laptop for work and gaming",
-                    price=Decimal("999.99"),
-                    quantity=10,
-                    icon="💻"
-                ),
-                Product(
-                    name="Mouse",
-                    description="Wireless ergonomic mouse",
-                    price=Decimal("29.99"),
-                    quantity=50,
-                    icon="🖱️"
-                ),
-                Product(
-                    name="Keyboard",
-                    description="Mechanical keyboard with RGB lighting",
-                    price=Decimal("79.99"),
-                    quantity=25,
-                    icon="⌨️"
-                ),
-                Product(
-                    name="Monitor",
-                    description="27-inch 4K monitor",
-                    price=Decimal("349.99"),
-                    quantity=15,
-                    icon="🖥️"
-                ),
-                Product(
-                    name="Headphones",
-                    description="Noise-cancelling wireless headphones",
-                    price=Decimal("149.99"),
-                    quantity=30,
-                    icon="🎧"
-                )
-            ]
-            for product in products:
-                db.add(product)
-            db.commit()
-            print("Initial data seeded.")
-    except Exception as e:
-        db.rollback()
-        print(f"Error seeding data: {e}")
-    finally:
-        db.close()
-
-seed_initial_data()
-
 app = FastAPI()
 
 app.add_middleware(

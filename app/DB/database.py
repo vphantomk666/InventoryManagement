@@ -8,6 +8,9 @@ load_dotenv()
 
 DATABASE_URL = os.environ.get("DATABASE_URL") or "sqlite:///./inventory.db"
 
+if DATABASE_URL.startswith("mysql://"):
+    DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://")
+    
 if DATABASE_URL.startswith("sqlite"):
     engine = create_engine(
         DATABASE_URL,
@@ -27,3 +30,5 @@ SessionLocal = sessionmaker(
 )
 
 Base = declarative_base()
+
+print("DB URL:", DATABASE_URL)

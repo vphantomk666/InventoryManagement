@@ -6,3 +6,5 @@ python-multipart
 pydantic
 typing-extensions
 python-dotenv
+pymysql
+cryptography
